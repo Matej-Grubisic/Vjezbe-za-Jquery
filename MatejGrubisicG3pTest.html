@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<style>
+	body{
+	  text-align:center;
+	  user-select:none;
+	  background:#313131;
+	}
+	#sve{
+	display:none
+	}
+	.container{
+	  display:flex;
+	  justify-content:center;
+	  flex-wrap:wrap;
+	  align-items:top;
+	  height:200px;
+	  overflow-y:scroll;
+	  outline:3px solid white;
+	  margin:10px;
+	}
+	.container div{
+	  margin:10px;
+	  width:150px;
+	  height:150px;
+	  background-color:mediumslateblue;
+	  background-image:url("https://i.hizliresim.com/9j3oxfu.png");
+	  background-size:0%;
+	  background-repeat:no-repeat;
+	  background-position:center center;
+	  cursor:pointer;
+	  transition:all 0.2s;
+	  border-radius:5px;
+	}
+	.container div:hover{
+	  background-size:30%;
+	}
+	.btn-container{
+	  display:flex;
+	  position:relative;
+	  bottom:-60px;
+	  margin:auto;
+	  text-align:center;
+	  justify-content:center;
+	  flex-wrap:wrap;
+	}
+	button{
+	  font-family:sans-serif;
+	  font-weight:bold;
+	  padding:2% 5%;
+	  cursor:pointer;
+	  margin:5px;
+	  font-size:100%;
+	  outline:none;
+	  border-radius:7px;
+	  border:2px solid #3333;
+	  transition:all 0.2s;
+	}
+	button:hover{
+	  background:dodgerblue;
+	  color:white;
+	  border:2px solid dodgerblue;
+	}
+	#msgDiv{
+		color: white;
+		font-size: 46px;
+		text-align: center;
+		display:flex;
+		position:relative;
+		margin:auto;
+		text-align:center;
+		justify-content:center;
+		flex-wrap:wrap;
+		font-family: Verdana;
+	}
+	</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<div id="sve">
+		<div class="container">
+		  <div class="qwe"></div>
+		  <div class="qwe"></div>
+		  <div class="qwe"></div>
+		</div>
+		<div id="msgDiv">magla u tijeku</div>
+		<div class="btn-container">
+		  <button class="green-btn">GREEN</button>
+		  <button class="blue-btn">BLUE</button>
+		  <button class="stop-btn">STOP</button>
+		</div>
+	</div>
+    
+<script>
+
+$(document).ready(function(){
+	let zaustavi;
+
+	$('div').fadeIn(1000, function() {
+		zaustavi = setInterval(micanje, 1000);
+		$('#msgDiv').fadeOut(1500);
+		
+	})
+	
+	function micanje(){
+		$('.qwe').animate({height: '+=50px'});
+		$('.qwe').animate({height: '-=50px'});
+	}
+
+	
+
+	$('.green-btn').click(function(){
+		$('.qwe').css('backgroundColor', 'green');
+	})
+
+	$('.blue-btn').click(function(){
+		$('.qwe').css('backgroundColor', 'blue');
+	})
+
+	$('.stop-btn').click(function(){
+		clearInterval(zaustavi);
+	})
+
+	$('.qwe').click(function(){
+		$(this).fadeOut();
+	})
+
+});
+
+
+
+
+
+</script>
+
+  </body>
+</html>
