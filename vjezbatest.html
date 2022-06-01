@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.element{
+    background-color: red;
+}
+.div2{
+    background-color: aqua;
+    height: 50px;
+    width: 50px;
+}
+.div3{
+    background-color: blue;
+    height: 150px;
+    width: 150px;
+}
+.div4{
+    background-color: black;
+    height: 50px;
+    width: 50px;
+}
+.div5{
+    background-color: orange;
+    height: 150px;
+    width: 150px;
+}
+.aaa {
+    background-color: yellow;
+
+}
+.aaa1 {
+    background-color: crimson;
+
+}
+.pozadina{
+    background-color: chocolate;
+}
+#naslov{
+    font-size: 100px;
+    text-align: center;
+    width: 100%;
+}
+.placeholder{
+    background-color: orangered;
+    width: 100%;
+    height: 20px;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div id="naslov">
+    Testiranje
+</div>
+    
+<div class="tabs">
+    <ul>
+        <li><a href="#tabs-1" />Prvi tab</a></li>
+        <li><a href="#tabs-2" />Drugi tab</a></li>
+        <li><a href="#tabs-3" />Treci tab</a></li>
+    </ul>
+    <div id="tabs-1">
+        <p>1 experiment </p><br>
+
+        <div id="progressbar"><div class="progress-label">Loading...</div></div>
+        
+    </div>
+    <div id="tabs-2">
+        <p>2 experiment</p><br>
+        <div class="div2">
+
+        </div>
+        <div class="div4">
+
+        </div>
+        
+        <div class="div3">
+            <p>baci ovde plavu</p>
+        </div>
+        <div class="div5">
+            <p>baci ovde crnu</p>
+        </div>
+    </div>
+    <div id="tabs-3">
+        <p>3 experiment</p><br>
+        <div id="accordion">
+            <div class="group">
+              <h3>O mackama</h3>
+              <div>
+                <p>Mačke (Felidae) naziv je za porodicu životinja iz reda zvijeri (Carnivora) unutar natporodice mačkolikih životinja (Feloidea).
+
+                    Svojim je habitusom većina vrsta iz te porodice vrlo slična široko rasprostranjenoj i općepoznatoj domaćoj mački: imaju gipko tijelo, meko krzno, kratka lica i relativno malene lubanje. Uši su im uspravne, šiljaste do zaobljene, a mačke ih mogu okretati u raznim pravcima. Kao kod svih zvijeri, oči su im okrenute prema naprijed da bi mogle vidjeti prostorno, što je vrlo važno za sposobnost procjene udaljenosti od lovine. Razlike u veličini mačaka vrlo su velike: dužine tijela varira im od 30 cm pa sve do 200 cm</p>
+              </div>
+            </div>
+            <div class="group">
+              <h3>O psima</h3>
+              <div>
+                <p>Domaći pas (Canis lupus familiaris) sisavac je iz reda psolikih odnosno porodice pasa (Canidae).</p>
+                <p>Primjeri pasmina danasnjih</p>
+                <ul>
+                  <li>Aljaski malamut</li>
+                  <li>Rotweiller</li>
+                  <li>Njemacki terijer</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="group">
+              <h3>O ljudima</h3>
+              <div>
+                <p>Čovjek (lat. Homo sapiens − razuman čovjek) je živo biće koje ima visoko razvijen mozak sposoban za apstraktno razmišljanje, govor, rješavanje problema, introspekciju, empatiju i sl. Današnji čovjek razvio se prije oko 200.000 godina na prostoru Afrike.[1] Procjenjuje se da je ljudska populacija u 2011. godini premašila 7 milijarda.[2] Čovjek je misaono biće jer može zaključivati, crtati i razmišljati, društveno biće jer živi u organiziranim društvima, duhovno biće jer razlikuje dobro od zla i prirodno biće jer dio je žive prirode </p>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+<br>
+
+<div id="dialog-confirm" title="Empty the recycle bin?">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Ovaj dialog ce promijeni pozadinu jesi li siguran?</p>
+</div>
+
+
+<script>
+
+$(document).ready(function(){
+    var progressbar = $( "#progressbar" ),
+      progressLabel = $( ".progress-label" );
+ 
+    progressbar.progressbar({
+      value: false,
+      change: function() {
+        progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+      },
+      complete: function() {
+        progressLabel.text( "GOTOVO!" );
+
+      }
+    });
+ 
+    function progress() {
+      var val = progressbar.progressbar( "value" ) || 0;
+ 
+      progressbar.progressbar( "value", val + 2 );
+ 
+      if ( val < 99 ) {
+        setTimeout( progress, 80 );
+      }
+    }
+ 
+    setTimeout( progress, 4000 );
+
+
+    $(".div2").draggable({
+        containment: "#tabs-2",
+        snap: ".div3",
+        revert: "invalid"
+    });
+
+    $(".div3").droppable({
+        accept: ".div2",
+        drop: function( event, ui) {
+            $(this)
+                .addClass("aaa")
+                .find("p")
+                    .html ("dropana plava!");
+        }        
+        
+    });
+
+    $(".div4").draggable({
+        containment: "#tabs-2",
+        snap: ".div5",
+        revert: "invalid"
+    });
+
+    $(".div5").droppable({
+        accept: ".div4",
+        drop: function( event, ui) {
+            $(this)
+                .addClass("aaa1")
+                .find("p")
+                    .html ("dropana crna!");
+        } 
+    })
+
+    $(".div4").sortable();
+
+    $(".tabs").tabs({collapsible: true});
+
+    $( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      show: {
+        effect: "blind",
+        duration: 1000
+        },
+      buttons: {
+        "Promini pozadinu": function() {
+          $( this ).dialog( "close" );
+          $("html").addClass("pozadina");
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+    
+    $( "#accordion" )
+      .accordion({
+        header: "> div > h3",
+        collapsible: true,
+      })
+      .sortable({
+        axis: "y",
+        handle: "h3",
+        placeholder: "placeholder",
+        stop: function( event, ui ){
+          ui.item.children( "h3" ).triggerHandler( "focusout" );
+          $( this ).accordion( "refresh" );
+        }
+      });    
+
+});
+
+</script>
+
+</body>
+</html>
